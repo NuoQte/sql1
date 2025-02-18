@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='mrdb',
+    name='sql1',
     version='0.1.0',
     packages=find_packages(),
     license='MIT',
@@ -10,5 +10,5 @@ setup(
     long_description_content_type='text/markdown',
     author='NuoQTe',
     author_email='nuoqte@gmail.com',
-    url='https://github.com/NuoQte/mrdb',
+    url='https://github.com/NuoQte/sql1',
 )

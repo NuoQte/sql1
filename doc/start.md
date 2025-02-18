@@ -2,8 +2,8 @@
 
 ### Create Tabels in Mysql
 ```python
-from mrdb import DataBase , Base , Column 
-from mrdb.types import INT , DECIMAL , TIMESTAMP,CURRENT_TIMESTAMP
+from sql1 import DataBase , Base , Column 
+from sql1.types import INT , DECIMAL , TIMESTAMP,CURRENT_TIMESTAMP
 import aiomysql , asyncio
 
 
@@ -35,8 +35,8 @@ db = DataBase(aiomysql, database_name="db_test").create(wallet,transactions)
 
 ### Create Tabels in Sqlite
 ```python
-from mrdb import DataBase , Base , Column 
-from mrdb.types import INTEGER , REAL , TEXT
+from sql1 import DataBase , Base , Column 
+from sql1.types import INTEGER , REAL , TEXT
 from datetime import datetime
 import aiosqlite , asyncio
 

@@ -1,19 +1,19 @@
-# MrDB
+# Sql1
 
 "An asynchronous Python ORM that supports MySQL, SQLite, and PostgreSQL with robust performance and easy-to-use interface."  
   
-**mrdb** supports the modules **aiomysql**, **aiosqlite**, and **asyncpg**.
+**sql1** supports the modules **aiomysql**, **aiosqlite**, and **asyncpg**.
 
 
 
 ### Install
 ```bash
-pip3 install -U mrdb
+pip3 install -U sql1
 ``` 
 
 
 ### Documens
-[Click here to view the documents.](https://github.com/nouqte/mrdb/doc/install.md)
+[Click here to view the documents.](https://github.com/nouqte/sql1/doc/install.md)
 
 
 ### notes
@@ -25,9 +25,9 @@ pip3 install -U mrdb
   
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/NuoQTe/mrdb/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/NuoQTe/sql1/blob/main/LICENSE) file for details.
 
-<a href="https://pypi.org/project/mrdb/"><img src="https://img.shields.io/badge/mrdb-0.1.0-F5F5F5?style=flat-square&labelColor=DC143C"></a> 
+<a href="https://pypi.org/project/sql1/"><img src="https://img.shields.io/badge/sql1-0.1.0-F5F5F5?style=flat-square&labelColor=DC143C"></a> 
 
 ## Contact the Developer
 - **Telegram**: [t.me/codetics](https://t.me/codetics)

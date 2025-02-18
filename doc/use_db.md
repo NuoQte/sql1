@@ -52,7 +52,7 @@ asyncio.get_event_loop().run_until_complete(main())
 if you think you will forget to use `.commit`!  
 you can use the following method:
 ```python
-from mrdb import DELETE
+from sql1 import DELETE
 ```
 ```python
 # useing .commit
