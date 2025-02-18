@@ -1,2 +1,2 @@
 from . import types 
-from .core import Base , DataBase , Column , ColumnBase , SELECT , WHERE
+from .core import Base , DataBase , Column , ColumnBase , SELECT , WHERE , DELETE , UPDATE

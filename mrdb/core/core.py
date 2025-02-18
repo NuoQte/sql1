@@ -2,194 +2,201 @@ import asyncio , json
 from ..types.types import DataType , BaseType , RCD , Collation , SET
 
 
+
+
 class ColumnBase:
     
-    __pr__ = ''
-    __su__ = ''
+    _pr_ = ''
+    _su_ = ''
     
     def __init__(self,v:"DataType",c):
-        self.__string__= f"{c}"
-        self.__pr__ = v.__pr__
-        self.__su__ = v.__su__
+        self._string_= f"{c}"
+        self._pr_ = v._pr_
+        self._su_ = v._su_
     
     
     
     
     @property
     def str(self):
-        return self.__string__
+        return self._string_
     
     
     def __str__(self):
-        return self.__string__
+        return self._string_
     
     def __repr__(self):
-        return self.__string__
+        return self._string_
     
     
     def __eq__(self, value):
         return BaseType(
-            self.__string__+ f' = {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+            self._string_+ f' = {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __ne__(self, value):
         return BaseType(
-            self.__string__+ f' != {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+            self._string_+ f' != {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
     
     def  __gt__(self,value):
         return BaseType(
-        self.__string__+ f' > {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' > {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __lt__(self,value):
         return BaseType(
-        self.__string__+ f' < {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' < {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def  __ge__(self,value):
         return BaseType(
-        self.__string__+ f' >= {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' >= {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __le__(self,value):
         return BaseType(
-        self.__string__+ f' <= {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' <= {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __or__(self, value):
         return BaseType(
-        self.__string__+ f' OR {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' OR {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __and__(self,value):
         return BaseType(
-        self.__string__+ f' AND {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' AND {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __add__(self, value):
         return BaseType(
-        self.__string__+ f' + {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' + {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __sub__(self, value):
         return BaseType(
-        self.__string__+ f' - {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' - {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __mul__(self, value):
         return BaseType(
-        self.__string__+ f' * {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' * {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __truediv__(self, value):
         return BaseType(
-            self.__string__+ f' / {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+            self._string_+ f' / {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
                 
     def __floordiv__(self, value):
         return BaseType(
-        self.__string__+ f' // {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' // {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __mod__(self, value):
         return BaseType(
-        self.__string__+ f' % {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' % {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
 
     def __pow__(self, value):
         return BaseType(
-        self.__string__+ f' ** {self.__pr__}{value}{self.__su__}',
-            self.__pr__,
-            self.__su__)
+        self._string_+ f' ** {self._pr_}{value}{self._su_}',
+            self._pr_,
+            self._su_)
         
     def __contains__(self,value):
         return BaseType(
-            f' {value} IN {self.__string__}',
-            self.__pr__,
-            self.__su__) 
+            f' {value} IN {self._string_}',
+            self._pr_,
+            self._su_) 
 
     def IN(self,set:"SET"):
         return BaseType(set.contains(self),
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
 
     def NOT_IN(self,set:"SET"):
         return BaseType(set.not_contains(self),
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
                         
     @property
     def IS_NULL(self):
         return BaseType(f"{self} IS NULL",
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
     
     @property
     def IS_NOT_NULL(self):
         return BaseType(f"{self} IS NOT NULL",
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
     
     def IS(self,item):
         return BaseType(f"{self} IS {item}",
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
     
     def BETWEEN(self,a,b):
         return BaseType(f"BETWEEN {a.__repr__()} AND {b.__repr__()}",
-            self.__pr__,
-            self.__su__) 
+            self._pr_,
+            self._su_) 
 
     def LIKE(self,statement:str):
         return BaseType(f"{self} LIKE {statement.__repr__()}",
-            self.__pr__,
-            self.__su__)
+            self._pr_,
+            self._su_)
     
     def AS(self,new_name):
-        self.__string__ += f" AS {new_name}"
+        self._string_ += f" AS {new_name}"
         return self
         
         
 
     
 class Column(ColumnBase):
-    __tablename__ : str
-    __index__ = None
-    __foreign_key__ = None
+    _tablename_ : str
+    _index_ = None
+    _foreign_key_ = []
 
 
     async def drop_column(self):
-        await self._database_.execute_commit(f"ALTER TABLE {self.__tablename__} DROP COLUMN {self.str}")
+        await self._database_.execute_commit(f"ALTER TABLE {self._tablename_} DROP COLUMN {self.str}")
 
     async def drop_index(self,index_name=None):
-        await self._database_.execute_commit(f"DROP INDEX idx_{self.str} ON {self.__tablename__}")
+        await self._database_.execute_commit(f"DROP INDEX idx_{self.str} ON {self._tablename_}")
 
     async def add_index(self):
-        query = f"ALTER TABLE {self.__tablename__} ADD INDEX idx_{self.str} ({self.str})"
+        # query = f"ALTER TABLE {self._tablename_} ADD INDEX idx_{self.str} ({self.str})"
+        query = f"CREATE INDEX IF NOT EXISTS idx_{self.str} ON {self._tablename_} ({self.str})"
         await self._database_.execute_commit(query)
     
-    async def add_foreign_key(self,reference_column:"Column"):
-        query = f"ALTER TABLE {self.__tablename__} ADD CONSTRAINT fk_{self.str} FOREIGN KEY ({self.str}) REFERENCES {reference_column.__tablename__}({reference_column.str})"
+    async def add_foreign_key(self,reference_column:"Column",on_update :bool=None,on_delete:bool=None):
+        query = f"ALTER TABLE {self._tablename_} ADD CONSTRAINT fk_{self.str} FOREIGN KEY ({self.str}) REFERENCES {reference_column._tablename_}({reference_column.str})"
+        if on_delete:
+            query += " ON DELETE CASCADE"
+        if on_update:
+            query += " ON UPDATE CASCADE"
         await self._database_.execute_commit(query)
 
 
     async def rename(self,new_name):
-        query = f"ALTER TABLE {self.__tablename__} CHANGE {self.column} {new_name} {self.datatype.TYPE}"
+        query = f"ALTER TABLE {self._tablename_} CHANGE {self.column} {new_name} {self.datatype.TYPE}"
         await self._database_.execute_commit(query)
         self.column = new_name
 
@@ -204,13 +211,14 @@ class Column(ColumnBase):
         return self.column
 
     def __str__(self):
-        return f"{self.__tablename__}.{self.column}"
+        return f"{self._tablename_}.{self.column}"
 
 
-    def __settable__(self,table):
-        self.__tablename__ = table.__tablename__
+    def _settable_(self,table):
+        
+        self._tablename_ = table._tablename_
         self._database_ = table._database_
-    
+        
     def __init__(self,
                  column_name :"str",
                  datatype :"DataType",
@@ -222,12 +230,14 @@ class Column(ColumnBase):
                  autoincrement:bool =None,
                  serial :bool =None,
                  foreign_key :"Column"= None,
+                 foreign_key_on_update :bool= None,
+                 foreign_key_on_delete :bool= None,
                  index :bool= None,
                  collation : Collation = None,
                  comment :str = None
                  ):
-        self.__index__ = index
-        self.__foreign_key__ = foreign_key
+        self._index_ = index
+        self._foreign_key_ = (foreign_key,foreign_key_on_update,foreign_key_on_delete)
         self.column = column_name
         self.datatype = datatype
         self.column_statement = f"{column_name} {datatype.TYPE}"
@@ -271,25 +281,25 @@ class SELECT:
             self.query += ','.join(map(str,columns))
 
     def __setdatabase__(self,database:"DataBase",keys):
-        self.__database = database
-        self.keys = keys
+        self._database = database
+        self.keys = tuple(map(str,keys))
         return self
         
     def __setbase__(self,new_query:str,database:"DataBase"):
         self.query = new_query
-        self.__database = database
+        self._database = database
         return self
     
     @property
     async def commit(self):
-        await self.__database.execute_commit(self.query)
+        await self._database.execute_commit(self.query)
     
     @property
     async def return_result(self) -> list["Base"]:
-        res = await self.__database.execute_return(self.query)
+        res = await self._database.execute_return(self.query)
         if not res:
             return res
-
+        
         return [RCD(**dict(zip(self.keys,v))) for v in res]
     
         
@@ -337,12 +347,12 @@ class SELECT:
         return self
 
     def ORDER_BY(self,*columns,order="ASC"):
-        columns = ', '.join(columns)
+        columns = ', '.join(map(str,columns))
         self.query += f" ORDER BY {columns} {order}"
         return self
    
     def GROUP_BY(self,*columns):
-        columns = ', '.join(columns)
+        columns = ', '.join(map(str,columns))
         self.query += f" GROUP BY {columns}"
         return self
     
@@ -469,6 +479,16 @@ class SELECT_ALL(SELECT):
 
 
 
+class DELETE(SELECT):
+    def __init__(self, table):
+        super().__init__()
+        self.query = f"DELETE FROM {table}"
+
+class UPDATE(SELECT):
+    def __init__(self, table):
+        super().__init__()
+        self.query = f"UPDATE {table}"
+
 class WHERE(SELECT):
     def __init__(self,statement):
         super().__init__()
@@ -482,47 +502,62 @@ class WHERE(SELECT):
 
 
 class Base:
-    __tablename__ : str
+    _tablename_ : str
     _database_ : "DataBase"
-    __foreign_keys__ = []
-    __indexes__ = []
-    __collation__ = None
+    _collation_ = None
     @property
     def all(self): 
         return "*"
 
-    def _foreign_key(self,column,anothor_column):
-        self.__foreign_keys__.append(f"FOREIGN KEY ({column.str}) REFERENCES {anothor_column.__tablename__}({anothor_column.str})")
-            
+        
     
-    def _add_index(self,column:"Column"):
-        self.__indexes__.append(f"INDEX idx_{column.str} ({column.str})")
     
     
     async def _table_creator(self,database:"DataBase"):
+        if database.db.__name__ == 'asyncpg':
+            self.add_all = self._add_all_pg
+    
         self._database_ = database
-        
+        _foreign_keys_ = []
+        _indexes_ = []
         _columns = []
+        
         for column in self.__class__.__dict__.values():
             if isinstance(column,Column):        
-                column.__settable__(self)
+                column._settable_(self)
                 _columns.append(f"{column.column_statement}")
-                
-                if column.__foreign_key__:
-                    self._foreign_key(column,column.__foreign_key__)
+                                
+                if any(column._foreign_key_):
+                    fk = column._foreign_key_
+                    if self._database_.db.__name__ == "aiosqlite":
+                        q = f"FOREIGN KEY ({column.str}) REFERENCES {fk[0]._tablename_}({fk[0].str})"
+                    else:
+                        q = f"CONSTRAINT fk_{column.str} FOREIGN KEY ({column.str}) REFERENCES {fk[0]._tablename_}({fk[0].str})"
+                        
+                    if fk[2]:
+                        q += " ON DELETE CASCADE"
+                    if fk[1]:
+                        q += " ON UPDATE CASCADE"    
+                    _foreign_keys_.append(q)
+                    
+                                            
             
-                if column.__index__:
-                    self._add_index(column)
-                
-       
-        _columns += self.__foreign_keys__
-        _columns += self.__indexes__
+                if column._index_:
+                    _indexes_.append(column)
+            
+            
+        _columns += _foreign_keys_
+        
         columns = ','.join(_columns)
         collation = ''
-        if self.__collation__:
-            collation = f"COLLATE={self.__collation__}"
-        await database.execute_commit(f"CREATE TABLE IF NOT EXISTS {self.__tablename__} ({columns}) {collation};")
-    
+        if self._collation_:
+            collation = f"COLLATE={self._collation_}"
+        await database.execute_commit(f"CREATE TABLE IF NOT EXISTS {self._tablename_} ({columns}) {collation};")
+
+
+        for c in _indexes_:
+            await c.add_index()
+
     
     
     async def add(self,**cv):
@@ -532,28 +567,26 @@ class Base:
             values.append(v)
             columns.append(c)
             
-        query = f"INSERT INTO {self.__tablename__} ({','.join(columns)}) VALUES{tuple(values)}"     
+        query = f"INSERT INTO {self._tablename_} ({','.join(columns)}) VALUES{tuple(values)}"     
         await self._database_.execute_commit(query)
 
     
     
-    async def add_all(self,*add_list):
-        query = ''
-        values = []
-        for cv in add_list:
-            columns = []
-            for c,v in cv.items():
-                values.append(v)
-                columns.append(c)
-                
-            query += f"INSERT INTO {self.__tablename__} ({','.join(columns)}) VALUES{tuple(values)};"     
+    async def add_all(self,columns_list:list|tuple , values:list|tuple):
+        query = f"INSERT INTO {self._tablename_} ({','.join([col.column for col in columns_list])}) VALUES({(self._database_._v_*len(columns_list)).removesuffix(',')})"            
         
-        await self._database_.executemulti_commit(query)
+        await self._database_.executemany_commit(query,values)
     
+    async def _add_all_pg(self,columns_list:list|tuple , values:list|tuple):
+        query = f"INSERT INTO {self._tablename_} ({','.join(columns_list)}) VALUES({','.join([f'${i+1}' for i in range(len(columns_list))])})"            
+        await self._database_.executemany_commit(query,values)
+        
     
     
     def delete(self):
-        return SELECT().__setbase__(f"DELETE FROM {self.__tablename__}",self._database_)
+        dl = DELETE(self)
+        dl._database = self._database_
+        return dl
     
     
     def select(self,*columns):
@@ -567,61 +600,74 @@ class Base:
 
     
     def update(self,statement)->"SELECT":
-        return SELECT().__setbase__(f'UPDATE {self.__tablename__} SET {statement}',self._database_)
+        up = UPDATE(self).SET(statement)
+        up._database = self._database_
+        return up
 
 
     async def drop_table(self):
-        await self._database_.execute_commit(f'DROP TABLE {self.__tablename__}')    
+        await self._database_.execute_commit(f'DROP TABLE {self._tablename_}')    
     
     async def drop_column(self,column:"Column"):
-        await self._database_.execute_commit(f"ALTER TABLE {self.__tablename__} DROP COLUMN {column.str}")
+        await self._database_.execute_commit(f"ALTER TABLE {self._tablename_} DROP COLUMN {column.str}")
     
     async def drop_columns(self,*columns:"Column"):
-        await self._database_.executemulti_commit(';'.join([f"ALTER TABLE {self.__tablename__} DROP COLUMN {column.str}" for column in columns]))
+        await self._database_.executemany_commit(';'.join([f"ALTER TABLE {self._tablename_} DROP COLUMN {column.str}" for column in columns]))
     
     async def add_column(self,column:"Column"):
-        column.__settable__(self)
         
-        query = f"ALTER TABLE {self.__tablename__} ADD {column.column_statement}"
+        column._settable_(self)
+        
+        query = f"ALTER TABLE {self._tablename_} ADD {column.column_statement}"
     
-        if column.__index__:
-            query += f",ADD INDEX idx_{column.str} ({column.str})"
                 
-        if column.__foreign_key__:
-            query += f",ADD CONSTRAINT fk_{column.str} FOREIGN KEY ({column.str}) REFERENCES {column.__foreign_key__.__tablename__}({column.__foreign_key__.str})"
-    
+        if any(column._foreign_key_) and self._database_.db.__name__ != 'aiosqlite':
+            fk = column._foreign_key_
+            query += f",ADD CONSTRAINT fk_{column.str} FOREIGN KEY ({column.str}) REFERENCES {fk[0]._tablename_}({fk[0].str})"
+            if fk[2]:
+                query += " ON DELETE CASCADE"
+            if fk[1]:
+                query += " ON UPDATE CASCADE"
+                    
         
         await self._database_.execute_commit(query)
-    
+        
+        if any(column._foreign_key_) and self._database_.db.__name__ == 'aiosqlite':
+            await column.add_foreign_key(column._foreign_key_)
+        
+        if column._index_:
+            await column.add_index()    
+        
+        
     
     
     
     async def add_index(self,column:"Column"):
         await column.add_index()
         
-    async def add_foreign_key(self,column:"Column",reference_column:"Column"):
-        await column.add_foreign_key(reference_column)
+    async def add_foreign_key(self,column:"Column",reference_column:"Column",on_update:bool=None,on_delete:bool=None):
+        await column.add_foreign_key(reference_column,on_update,on_delete)
 
     async def rename_column(self,column:"Column",new_name:str):
         await column.rename(new_name)
     
     async def rename_table(self,new_name:str):
-        query = f"ALTER TABLE {self.__tablename__} RENAME TO {new_name}"
+        query = f"ALTER TABLE {self._tablename_} RENAME TO {new_name}"
         await self._database_.execute_commit(query)
-        self.__tablename__ = new_name
+        self._tablename_ = new_name
         for column in self.__class__.__dict__.values():
             if isinstance(column,Column):        
-                column.__tablename__ = new_name
+                column._tablename_ = new_name
     
     
 
     
     
     def __str__(self):
-        return self.__tablename__    
+        return self._tablename_    
 
     def __repr__(self):
-        return json.dumps(self.__dict__,indent=4)
+        return json.dumps(self.__dict__,default=str,indent=4)
 
 
 
@@ -733,6 +779,7 @@ class DataBase:
      
     async def _create(self,*tabels:Base):
         if self.db.__name__ == 'aiomysql':
+            self._v_ = '%s,'
             await self._create_database(self.db.connect(
                 user=self.user,
                 password=self.password,
@@ -782,11 +829,14 @@ class DataBase:
                 ) for _ in range(self.pool_size)]
         
         elif self.db.__name__ == 'aiosqlite':
+            self._v_ = '?,'
             if self.timeout :
                 self.kwargs['timeout'] = self.timeout
-            
+            database = f"{self.database_name.removesuffix('.db')}.db"
+            if self.path:
+                database = f"{self.path.removesuffix('/')}/{database}"
             self._pool = [await self.db.connect(
-                database = f"{self.path.removesuffix('/')}/{self.database_name.removesuffix('.db')}.db",
+                database = database,
                 loop = self.loop,
                 iter_chunk_size= self.iter_chunk_size,
                 **self.kwargs
@@ -841,38 +891,33 @@ class DataBase:
         else:
             raise Exception('Database Invauled')
         
+
         for t in tabels: await t._table_creator(self)
         
 
     async def execute_commit(self,query:str,values:tuple=()):
-        print(query)
-        print('----------------------------')
         con = await self._pop()                                
         async with await con.cursor() as cur:
-            await cur.execute(query,values)
+            await cur.execute(str(query),values)
             await con.commit()
     
         self._pool.append(con)
 
 
     async def execute_return(self,query:str,values:tuple=()) -> list[tuple] :
-        print(query)
-        print('----------------------------')
         con = await self._pop()                               
                          
         async with await con.cursor() as cur:
-            await cur.execute(query,values)
+            await cur.execute(str(query),values)
             res = await cur.fetchall()
             
         self._pool.append(con)
         return res
         
-    async def executemulti_commit(self,query:str,values:tuple=()):
-        print(query)
-        print('----------------------------')
+    async def executemany_commit(self,query:str,values:tuple=()):
         con = await self._pop()        
         async with await con.cursor() as cur:
-            async for _ in cur.executemulti(query,values):pass
+            await cur.executemany(str(query),values)
             await con.commit()
         
         self._pool.append(con)
@@ -886,6 +931,10 @@ class DataBase:
                 try:
                     return self._pool.pop()
                 except:pass
-        
+    
+    async def _close_pool(self):
+        for con in self._pool:
+            await con.close()
+
 
 

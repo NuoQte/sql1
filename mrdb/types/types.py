@@ -1,88 +1,98 @@
-from types import SimpleNamespace
+from types import SimpleNamespace 
 import json
 
 class RCD(SimpleNamespace):
-    def __repr__(self):
-        return json.dumps(self.__dict__,indent=4)
+    
 
+    def _default(self,v):
+        if v.__class__.__name__ == "Decimal":
+            return float(v)
+        
+        return str(v)
+        
+    def __repr__(self):
+        return json.dumps(self.__dict__,default=self._default,indent=4)
+
+    def __str__(self):
+        return json.dumps(self.__dict__,default=self._default,indent=4)
 
 
 class BaseType:
     
-    __pr__ = ''
-    __su__ = ''
+    _pr_ = ''
+    _su_ = ''
     
     def __init__(self,string="",pr="",su=""):
-        self.__string__= f"{string}"
-        self.__pr__ = pr
-        self.__su__ = su
+        self._string_= f"{string}"
+        self._pr_ = pr
+        self._su_ = su
     
     def __str__(self):
-        return self.__string__
+        return self._string_
     
     def __repr__(self):
-        return self.__string__
+        return self._string_
     
     
     def __eq__(self, value):
-        self.__string__+= f' = {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' = {self._pr_}{value}{self._su_}'
         return self
 
     def __ne__(self, value):
-        self.__string__+= f' != {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' != {self._pr_}{value}{self._su_}'
         return self
     
     def  __gt__(self,value):
-        self.__string__+= f' > {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' > {self._pr_}{value}{self._su_}'
         return self
     def __lt__(self,value):
-        self.__string__+= f' < {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' < {self._pr_}{value}{self._su_}'
         return self
     def  __ge__(self,value):
-        self.__string__+= f' >= {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' >= {self._pr_}{value}{self._su_}'
         return self
     def __le__(self,value):
-        self.__string__+= f' <= {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' <= {self._pr_}{value}{self._su_}'
         return self
     def __or__(self, value):
-        self.__string__+= f' OR {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' OR {self._pr_}{value}{self._su_}'
         return self
     def __and__(self,value):
-        self.__string__+= f' AND {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' AND {self._pr_}{value}{self._su_}'
         return self
     def __add__(self, value):
-        self.__string__+= f' + {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' + {self._pr_}{value}{self._su_}'
         return self
     def __sub__(self, value):
-        self.__string__+= f' - {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' - {self._pr_}{value}{self._su_}'
         return self
     def __mul__(self, value):
-        self.__string__+= f' * {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' * {self._pr_}{value}{self._su_}'
         return self
 
     def __truediv__(self, value):
-        self.__string__+= f' / {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' / {self._pr_}{value}{self._su_}'
         return self
                 
     def __floordiv__(self, value):
-        self.__string__+= f' // {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' // {self._pr_}{value}{self._su_}'
         return self
     def __mod__(self, value):
-        self.__string__+= f' % {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' % {self._pr_}{value}{self._su_}'
         return self
     def __pow__(self, value):
-        self.__string__+= f' ** {self.__pr__}{value}{self.__su__}'
+        self._string_+= f' ** {self._pr_}{value}{self._su_}'
         return self
 
     
     def __contains__(self,value):
-        self.__string__+= f' {value} IN {self.__string__}' 
+        self._string_+= f' {value} IN {self._string_}' 
         return self
 
 
 class DataType:
-    __pr__ = ""
-    __su__ = ""
+    _pr_ = ""
+    _su_ = ""
     TYPE :str = None
     
     def __str__(self):
@@ -93,102 +103,102 @@ class DataType:
 
 
 class VARCHAR(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     def __init__(self,n):
         self.TYPE = f'VARCHAR({n})'
 
 class CHAR(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     def __init__(self,n):
         self.TYPE = f'CHAR({n})'
 
 class TEXT(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "TEXT"
 
 class TINYTEXT(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "TINYTEXT"
 
 class MEDIUMTEXT(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "MEDIUMTEXT"
 
 class LONGTEXT(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "LONGTEXT"
 
 class BLOB(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "BLOB"
 
 class TINYBLOB(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "TINYBLOB"
 
 class MEDIUMBLOB(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "MEDIUMBLOB"
 
 class LONGBLOB(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "LONGBLOB"
 
 class BINARY(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     def __init__(self,v):
         self.TYPE = f"BINARY({v})"
     
 class VARBINARY(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     def __init__(self,v):
         self.TYPE = f"VARBINARY({v})"
 
 
 class DATE(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "DATE"
 
 class DATETIME(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "DATETIME"
 
 
 class TIME(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "TIME"
 
 
 class TIMESTAMP(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "TIMESTAMP"
 
 # class CURRENT_TIMESTAMP(DataType):
-#     __pr__ = "'"
-#     __su__ = "'"
+#     _pr_ = "'"
+#     _su_ = "'"
 #     TYPE = "CURRENT_TIMESTAMP"
 
 CURRENT_TIMESTAMP = "CURRENT_TIMESTAMP"
 
 class YEAR(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     TYPE = "YEAR"
 
 
@@ -230,6 +240,9 @@ class DECIMAL(DataType):
     def __init__(self,a,b):
         self.TYPE = f"DECIMAL({a},{b})"
     
+class REAL(DataType):
+    TYPE = "REAL"
+
 
 class SET(DataType):
     TYPE = 'SET'
@@ -251,8 +264,8 @@ class BOOLEAN(DataType):
     TYPE = "BOOLEAN"
 
 class ENUM(DataType):
-    __pr__ = "'"
-    __su__ = "'"
+    _pr_ = "'"
+    _su_ = "'"
     def __init__(self,set:tuple[str]):
         self.TYPE = f"ENUM{set.__repr__()}"
 
