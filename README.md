@@ -13,7 +13,7 @@ pip3 install -U sql1
 
 
 ### Documens
-[Click here to view the documents.](https://github.com/nuoqte/sql1/doc/install.md)
+[Click here to view the documents.](https://github.com/NuoQTe/sql1/blob/main/doc/install.md)
 
 
 ### notes
