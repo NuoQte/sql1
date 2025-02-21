@@ -1,5 +1,6 @@
 import asyncio , json 
 from ..sql_class import Column,DELETE , SELECT ,SELECT_ALL,SELECT_DISTINCT ,UPDATE
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
 class Base:
@@ -261,6 +262,9 @@ class DataBase:
 
   
     async def _create(self,*tabels:Base):
+        self._scheduler = AsyncIOScheduler()
+        self._scheduler.start()
+        self._scheduler.add_job(self._update_pool ,"interval", minutes = 15, id = 'update_pool')
         if self.db.__name__ == 'aiomysql':
             self._v_ = '%s,'
             await self._create_database(self.db.connect(
@@ -418,9 +422,73 @@ class DataBase:
                 except:pass
     
     
-    async def _close_pool(self):
+    async def _update_pool(self):
         for con in self._pool:
             await con.close()
+        for con in self._pool:
+            await con.close()
+        
+        if self.db.__name__ == 'aiomysql':
+            self._pool = [await self.db.connect(
+                user=self.user,
+                password=self.password,
+                host=self.host,
+                db=self.database_name,        
+                port=self.port or 3306,
+                unix_socket=self.unix_socket,
+                charset=self.charset,
+                sql_mode=self.sql_mode,
+                read_default_file=self.read_default_file,
+                use_unicode=self.use_unicode,
+                client_flag=self.client_flag,
+                init_command=self.init_command,
+                connect_timeout=self.timeout,
+                read_default_group=self.read_default_file,
+                autocommit=self.autocommit,
+                echo=self.echo,
+                local_infile=self.local_infile,
+                loop=self.loop,
+                ssl=self.ssl,
+                auth_plugin=self.auth_plugin,
+                program_name=self.program_name,
+                server_public_key=self.server_public_key
+                ) for _ in range(self.pool_size)]
+        
+        elif self.db.__name__ == 'aiosqlite':
+            database = f"{self.database_name.removesuffix('.db')}.db"
+            if self.path:
+                database = f"{self.path.removesuffix('/')}/{database}"
+            self._pool = [await self.db.connect(
+                database = database,
+                loop = self.loop,
+                iter_chunk_size= self.iter_chunk_size,
+                **self.kwargs
+                ) for _ in range(self.pool_size)]
+        
+        elif self.db.__name__ == 'asyncpg':
+            self._pool = [await self.db.connect(
+                dsn=self.dsn,
+                host=self.host,
+                port=self.port,
+                user=self.user,
+                password=self.password,
+                passfile=self.passfile,
+                database=self.database_name,
+                loop=self.loop,
+                timeout=self.timeout or 60,
+                statement_cache_size=self.statement_cache_size,
+                max_cached_statement_lifetime=self.max_cached_statement_lifetime,
+                max_cacheable_statement_size=self.max_cacheable_statement_size,
+                command_timeout=self.command_timeout,
+                ssl=self.ssl,
+                direct_tls=self.direct_tls,
+                server_settings=self.server_settings,
+                target_session_attrs=self.target_session_attrs,
+                krbsrvname=self.krbsrvname,
+                gsslib=self.gsslib
+            ) for _ in range(self.pool_size)]
+        
+            
 
 
 

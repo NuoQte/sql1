@@ -11,4 +11,7 @@ setup(
     author='NuoQTe',
     author_email='nuoqte@gmail.com',
     url='https://github.com/NuoQte/sql1',
+    install_requires=[
+        'APScheduler==3.10.4'
+    ],
 )
