@@ -189,10 +189,6 @@ class TIMESTAMP(DataType):
     _su_ = "'"
     TYPE = "TIMESTAMP"
 
-# class CURRENT_TIMESTAMP(DataType):
-#     _pr_ = "'"
-#     _su_ = "'"
-#     TYPE = "CURRENT_TIMESTAMP"
 
 CURRENT_TIMESTAMP = "CURRENT_TIMESTAMP"
 

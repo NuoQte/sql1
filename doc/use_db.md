@@ -11,7 +11,7 @@ async def main():
     await transactions.add(wallet_id = 2, amount = 5.5, transactions_type = 1)
     
     # Update record
-    await wallet.update(wallet.balance ==  wallet.balance + 5.5).WHERE(wallet.wallet_id == 2).commit
+    await wallet.update(balance =  wallet.balance + 5.5).WHERE(wallet.wallet_id == 2).commit
     
     # Select record
     result = await wallet.select(wallet.user_id, Wallet.balance, wallet.created_at).WHERE(wallet.balance >= 5).ORDER_BY(wallet.balance,order="DESC").LIMIT(3).return_result
@@ -36,7 +36,7 @@ async def main():
     await transactions.add(wallet_id = 2, amount = 5.5, transactions_type = 1, transactions_date = str(datetime.now()))
     
     # Update record
-    await wallet.update(wallet.balance ==  wallet.balance + 5.5).WHERE(wallet.wallet_id == 2).commit
+    await wallet.update(balance =  wallet.balance + 5.5).WHERE(wallet.wallet_id == 2).commit
     
     # Select record
     result = await wallet.select(wallet.user_id, Wallet.balance, wallet.created_at).WHERE(wallet.balance >= 5).ORDER_BY(wallet.balance,order="DESC").LIMIT(3).return_result

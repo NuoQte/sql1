@@ -27,7 +27,7 @@ pip3 install -U sql1
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/NuoQTe/sql1/blob/main/LICENSE) file for details.
 
-<a href="https://pypi.org/project/sql1/"><img src="https://img.shields.io/badge/sql1-0.1.0-F5F5F5?style=flat-square&labelColor=DC143C"></a> 
+<a href="https://pypi.org/project/sql1/"><img src="https://img.shields.io/badge/sql1-0.1.1-1B1B1B?style=plastic&labelColor=2C5857"></a> 
 
 ## Contact the Developer
 - **Telegram**: [t.me/codetics](https://t.me/codetics)
