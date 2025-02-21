@@ -2,7 +2,6 @@ import asyncio , json
 from ..sql_class import Column,DELETE , SELECT ,SELECT_ALL,SELECT_DISTINCT ,UPDATE
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-
 class Base:
     _tablename_ : str
     _database_ : "DataBase"
@@ -170,6 +169,7 @@ class DataBase:
                  database_name='test',
                  path ='',
                  pool_size:int=5,
+                 pool_change_interval :int = 15,
                  port=None,
                  unix_socket=None,
                  charset='',
@@ -206,6 +206,7 @@ class DataBase:
                  **kwargs
                  ):
         self.db = db
+        self.pool_change_interval = pool_change_interval
         self.database_name = database_name
         self.user = user
         self.password = password
@@ -264,7 +265,7 @@ class DataBase:
     async def _create(self,*tabels:Base):
         self._scheduler = AsyncIOScheduler()
         self._scheduler.start()
-        self._scheduler.add_job(self._update_pool ,"interval", minutes = 15, id = 'update_pool')
+        self._scheduler.add_job(self._update_pool ,"interval", minutes = self.pool_change_interval, id = 'update_pool')
         if self.db.__name__ == 'aiomysql':
             self._v_ = '%s,'
             await self._create_database(self.db.connect(
@@ -423,10 +424,8 @@ class DataBase:
     
     
     async def _update_pool(self):
-        for con in self._pool:
-            await con.close()
-        for con in self._pool:
-            await con.close()
+        while self._pool:
+            self._pool.pop().close()
         
         if self.db.__name__ == 'aiomysql':
             self._pool = [await self.db.connect(
@@ -488,7 +487,5 @@ class DataBase:
                 gsslib=self.gsslib
             ) for _ in range(self.pool_size)]
         
-            
-
-
+    
 
